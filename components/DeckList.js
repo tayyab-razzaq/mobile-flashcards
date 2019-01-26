@@ -13,7 +13,8 @@ class DeckList extends Component {
 	onDeckClick = (e, id) => {
 		e.preventDefault();
 		this.props.getDeck(id).then(() => {
-			//change route to deck detail screen
+			const { navigate } = this.props.navigation;
+			navigate('Deck');
 		});
 	};
 	

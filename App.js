@@ -2,8 +2,6 @@ import React from 'react';
 import {createStackNavigator, createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 import store from './store';
-
-
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
@@ -34,11 +32,9 @@ const AppNavigator = createStackNavigator(
 
 const AppContainer = createAppContainer(AppNavigator);
 
-const App = props => {
-	return (
-		<Provider store={store} {...props}>
-			<AppContainer/>
-		</Provider>
-	);
-};
+const App = props => (
+	<Provider store={store} {...props}>
+		<AppContainer/>
+	</Provider>
+);
 export default App;

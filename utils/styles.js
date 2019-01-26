@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const white = '#FFF';
+const black = '#000';
 const lightGrey = '#C6C6C6';
 
 const styles = StyleSheet.create({
@@ -10,11 +11,11 @@ const styles = StyleSheet.create({
 		textAlign: 'center'
 	},
 	deckTitle: {
-		marginTop: 20,
+		paddingTop: 20,
 		fontSize: 24,
 	},
 	questionsCount: {
-		color: '#aaa',
+		color: lightGrey,
 		marginTop: 10,
 		marginBottom: 20,
 		textAlign: 'center'
@@ -27,9 +28,35 @@ const styles = StyleSheet.create({
 		borderBottomColor: lightGrey,
 		backgroundColor: white,
 		textAlign: 'center',
-		border: '1px solid #ccc',
 		borderWidth: 0.5,
-		padding: '10px 0',
+		padding: 10,
+	},
+	regularBtn: {
+		alignItems: 'center',
+		borderRadius: 5,
+		borderWidth: 1,
+		borderColor: black,
+		padding: 20,
+		marginLeft: 50,
+		marginRight: 50,
+		marginTop: 10
+	},
+	addCardBtn: {
+		backgroundColor: white,
+		color: black
+	},
+	startQuizBtn: {
+		backgroundColor: black,
+		color: white
+	},
+	inputField: {
+		padding: 10,
+		fontSize: 20,
+		height: 40,
+		borderWidth: 1,
+		marginRight: 30,
+		marginLeft: 30,
+		borderRadius: 10,
 	},
 });
 
