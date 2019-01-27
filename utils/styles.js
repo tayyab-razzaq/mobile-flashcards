@@ -58,6 +58,27 @@ const styles = StyleSheet.create({
 		marginLeft: 30,
 		borderRadius: 10,
 	},
+	submitBtn: {
+		flex: 1,
+		alignItems: 'center',
+		borderColor: black,
+		borderRadius: 5,
+		borderWidth: 1,
+		padding: 20,
+		marginBottom: 10,
+		marginLeft: 40,
+		marginRight: 40
+	},
+	inverseSubmitBtn: {
+		alignItems: 'center',
+		borderRadius: 5,
+		padding: 10,
+		marginBottom: 10,
+		marginLeft: 40,
+		marginRight: 40,
+		backgroundColor: black,
+		color: white
+	},
 });
 
 export default styles;
