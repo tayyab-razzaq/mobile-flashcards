@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 const white = '#FFF';
 const black = '#000';
 const lightGrey = '#C6C6C6';
+export const red = '#BA0F0F';
+export const green = '#0A7203';
 
 const styles = StyleSheet.create({
 	container: {
@@ -79,6 +81,73 @@ const styles = StyleSheet.create({
 		backgroundColor: black,
 		color: white
 	},
+	regularSubmitBtn: {
+		backgroundColor: black,
+		color: white,
+	},
+	correctBtn: {
+		backgroundColor: green,
+		color: white,
+		margin: 10,
+		fontWeight: 'bold',
+		fontSize: 16
+	},
+	incorrectBtn: {
+		backgroundColor: red,
+		margin: 10,
+		fontWeight: 'bold',
+		fontSize: 16,
+		color: white,
+	},
+	heading: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: black
+	},
+	total: {
+		fontSize: 12,
+		fontWeight: 'bold',
+		color: lightGrey
+	},
+	actions: {
+		flexDirection: 'row'
+	},
+	actionsBtn: {
+		backgroundColor: black,
+		color: white,
+		margin: 10,
+		padding: 20,
+		borderWidth: 1
+	},
+	cardNumber: {
+		fontSize: 14,
+		color: black,
+		alignSelf: 'flex-start'
+	},
+	flipCard: {
+		height: 200,
+		width: 200,
+		backgroundColor: lightGrey,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	content: {
+		fontSize: 20,
+		color: black,
+		fontWeight: 'bold',
+		width: 90
+	},
+	flipCardBack: {
+		backgroundColor: white,
+		position: 'absolute',
+		top: 0
+	},
+	switchBtn: {
+		fontSize: 16,
+		color: lightGrey,
+		fontWeight: 'bold',
+		margin: 5
+	}
 });
 
 export default styles;
