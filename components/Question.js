@@ -48,10 +48,13 @@ class Question extends Component {
 		).start();
 	};
 	
+	onSubmit = property => {
+		this.setState({questionCardFace: true}, () => this.props.onSubmit(property));
+	};
 	
 	render() {
 		
-		const {questions} = this.props;
+		const {questions, currentQuestion} = this.props;
 		const frontAnimatedStyle = {
 			transform: [{rotateY: this.frontInterpolate}],
 		};
@@ -60,9 +63,7 @@ class Question extends Component {
 		};
 		return (
 			<View style={styles.container}>
-				<Text style={styles.cardNumber}>
-					{this.props.currentQuestion + 1} / {questions.length}
-				</Text>
+				<Text style={styles.cardNumber}>{currentQuestion + 1} / {questions.length}</Text>
 				
 				<View style={styles.container}>
 					<Animated.View
@@ -72,7 +73,10 @@ class Question extends Component {
 							{opacity: this.frontOpacity},
 						]}>
 						<Text style={styles.content}>
-							Question: {questions[this.props.currentQuestion].question}
+							Question
+						</Text>
+						<Text style={styles.content}>
+							{questions[currentQuestion].question}
 						</Text>
 					</Animated.View>
 					
@@ -84,25 +88,24 @@ class Question extends Component {
 							{opacity: this.backOpacity},
 						]}>
 						<Text style={styles.content}>
-							Answer: {questions[this.props.currentQuestion].answer}
+							Answer
+						</Text>
+						<Text style={styles.content}>
+							{questions[currentQuestion].answer}
 						</Text>
 					</Animated.View>
-				</View>
-				<View style={styles.container}>
-					<TouchableOpacity onPress={() => this.flipCard()}>
+					<TouchableOpacity onPress={this.flipCard}>
 						<Text style={styles.switchBtn}>
 							{this.state.questionCardFace ? 'View Answer' : 'View Question'}
 						</Text>
 					</TouchableOpacity>
-				</View>
-				<View style={styles.container}>
 					<TouchableOpacity
-						onPress={() => this.props.onSubmit('correct')}
+						onPress={() => this.onSubmit('correct')}
 						style={{...styles.regularBtn, ...styles.correctBtn}}>
 						<Text style={styles.correctBtn}>Correct</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
-						onPress={() => this.props.onSubmit('incorrect')}
+						onPress={() => this.onSubmit('incorrect')}
 						style={{...styles.regularBtn, ...styles.incorrectBtn}}>
 						<Text style={styles.incorrectBtn}>In Correct</Text>
 					</TouchableOpacity>

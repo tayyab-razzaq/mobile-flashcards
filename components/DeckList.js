@@ -38,7 +38,7 @@ class DeckList extends Component {
 		const decks = this.props.decksReducer.get('decks');
 		return (
 			<FlatList
-				style={styles.container}
+				style={{...styles.container, paddingTop: 150}}
 				data={Object.keys(decks).map(deckKey => decks[deckKey])}
 				keyExtractor={(item, index) => index}
 				renderItem={({ item }) => this.renderDeck(item)}

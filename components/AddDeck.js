@@ -35,6 +35,9 @@ class AddDeck extends Component {
 		return (
 			<ScrollView style={styles.container}>
 				<View>
+					<Text style={styles.content}>What is the title of new Deck ?</Text>
+				</View>
+				<View>
 					<TextInput
 						style={styles.inputField}
 						value={title}

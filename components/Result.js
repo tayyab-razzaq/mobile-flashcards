@@ -7,17 +7,17 @@ const Result = props => {
 	const {correct, incorrect} = props;
 	return (
 		<View style={styles.container}>
-			<View>
-				<Text style={styles.heading}>Quiz Completed</Text>
-				<Text style={styles.incorrectBtn}>
+			<View style={styles.container}>
+				<Text style={{...styles.quizCompleted}}>Quiz Completed</Text>
+				<Text style={{...styles.incorrectBtn, ...styles.quizDetail}}>
 					{incorrect} answer(s) were incorrect.({((incorrect / totalQuestions) * 100).toFixed(2)}%)
 				</Text>
-				<Text style={styles.correctBtn}>
+				<Text style={{...styles.correctBtn, ...styles.quizDetail}}>
 					{correct} answer(s) were correct.({((correct / totalQuestions) * 100).toFixed(2)}%)
 				</Text>
-				<Text style={styles.total}>{totalQuestions} Total questions.</Text>
+				<Text style={{...styles.quizSummary, ...styles.quizDetail}}>{totalQuestions} Total questions.</Text>
 			</View>
-			<View>
+			<View style={styles.container}>
 				<TouchableOpacity
 					onPress={() => props.navigation.goBack()} style={{...styles.regularBtn, ...styles.addCardBtn}}>
 					<Text style={styles.addCardBtn}>Go Back!</Text>

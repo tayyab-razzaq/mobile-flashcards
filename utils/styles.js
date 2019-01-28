@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		textAlign: 'center'
 	},
+	centerText: {
+		justifyContent: 'center',
+		textAlign: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+	},
 	deckTitle: {
 		paddingTop: 20,
 		fontSize: 24,
@@ -94,33 +100,49 @@ const styles = StyleSheet.create({
 		backgroundColor: red,
 		color: white,
 	},
-	heading: {
-		fontSize: 20,
+	quizCompleted: {
+		fontSize: 24,
 		fontWeight: 'bold',
-		color: black
+		alignItems: 'center',
+		textAlign: 'center',
+		justifyContent: 'center',
+		marginBottom: 10,
+		color: black,
 	},
-	total: {
-		fontSize: 12,
+	quizDetail: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		textAlign: 'center',
+		margin: 10,
+		padding: 10
+	},
+	quizSummary: {
+		marginTop: 20,
 		fontWeight: 'bold',
+		fontSize: 16,
 		color: lightGrey
 	},
 	cardNumber: {
-		fontSize: 14,
+		fontSize: 16,
 		color: black,
 		alignSelf: 'flex-start'
 	},
 	flipCard: {
-		height: 200,
-		width: 200,
 		backgroundColor: lightGrey,
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backfaceVisibility: 'hidden',
+		padding: 30,
+		marginTop: 20
 	},
 	content: {
 		fontSize: 20,
 		color: black,
 		fontWeight: 'bold',
-		width: 90
+		justifyContent: 'center',
+		textAlign: 'center',
+		alignItems: 'center',
+		alignSelf: 'center'
 	},
 	flipCardBack: {
 		backgroundColor: white,
@@ -131,7 +153,12 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		color: lightGrey,
 		fontWeight: 'bold',
-		margin: 5
+		marginTop: 20,
+		marginBottom: 30,
+		justifyContent: 'center',
+		textAlign: 'center',
+		alignItems: 'center',
+		alignSelf: 'center'
 	},
 	disabledClass: {
 		backgroundColor: lightGrey,
