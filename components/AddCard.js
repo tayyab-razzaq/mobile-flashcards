@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {addCardToDeck} from '../actions/decksActions';
 import {connect} from 'react-redux';
 import styles from '../utils/styles';
-import {View, TextInput, TouchableOpacity, Text} from 'react-native';
+import {ScrollView, TextInput, TouchableOpacity, Text} from 'react-native';
 
 class AddCard extends Component {
 	constructor(props) {
@@ -45,31 +45,28 @@ class AddCard extends Component {
 	render() {
 		const {card} = this.state;
 		return (
-			<View style={styles.container}>
-				<View style={{flex: 1, backgroundColor: '#ccc', justifyContent: 'space-around'}}>
-					<TextInput
-						value={card.question}
-						style={styles.inputField}
-						placeholder="enter question"
-						clearButtonMode="while-editing"
-						onChangeText={text => this.onChange(text, 'question')}
-					/>
-					<TextInput
-						value={card.answer}
-						style={styles.inputField}
-						placeholder="enter answer"
-						clearButtonMode="while-editing"
-						onChangeText={text => this.onChange(text, 'answer')}
-					/>
-				</View>
-				<View style={{flex: 2}}>
-					<TouchableOpacity
-						onPress={this.onSubmit}
-						style={styles.inverseSubmitBtn}>
-						<Text style={styles.inverseSubmitBtn}>Submit</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+			<ScrollView style={styles.container}>
+				<TextInput
+					value={card.question}
+					style={styles.inputField}
+					placeholder="enter question"
+					clearButtonMode="while-editing"
+					onChangeText={text => this.onChange(text, 'question')}
+				/>
+				<TextInput
+					value={card.answer}
+					style={styles.inputField}
+					placeholder="enter answer"
+					clearButtonMode="while-editing"
+					onChangeText={text => this.onChange(text, 'answer')}
+				/>
+				
+				<TouchableOpacity
+					onPress={this.onSubmit}
+					style={styles.inverseSubmitBtn}>
+					<Text style={styles.inverseSubmitBtn}>Submit</Text>
+				</TouchableOpacity>
+			</ScrollView>
 		);
 	}
 }

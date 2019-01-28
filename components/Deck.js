@@ -23,6 +23,8 @@ class Deck extends Component {
 		const deck = this.props.decksReducer.get('deck');
 		const { questions } = deck;
 		const questionsCount = questions.length;
+		const disabled = questionsCount === 0;
+		const disabledClass = disabled ? styles.disabledClass : {};
 		return (
 			<View style={styles.container}>
 				<View style={styles.deckHolder}>
@@ -37,8 +39,9 @@ class Deck extends Component {
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={this.onStartQuizClick}
-						style={{...styles.regularBtn, ...styles.startQuizBtn}}>
-						<Text style={styles.startQuizBtn}>Start Quiz</Text>
+						disabled={disabled}
+						style={{...styles.regularBtn, ...styles.startQuizBtn, ...disabledClass}}>
+						<Text style={{...styles.startQuizBtn, ...disabledClass}}>Start Quiz</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

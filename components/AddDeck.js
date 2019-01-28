@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {saveNewDeck} from '../actions/decksActions';
 import {connect} from 'react-redux';
 import styles from '../utils/styles';
-import {TouchableOpacity, Text, View, TextInput} from 'react-native';
+import {ScrollView, TouchableOpacity, Text, View, TextInput} from 'react-native';
 
 class AddDeck extends Component {
 	constructor(props) {
@@ -33,7 +33,7 @@ class AddDeck extends Component {
 	render() {
 		const {title} = this.state;
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<View>
 					<TextInput
 						style={styles.inputField}
@@ -46,11 +46,11 @@ class AddDeck extends Component {
 				<View>
 					<TouchableOpacity
 						onPress={this.onSubmit}
-						style={{...styles.regularBtn, ...styles.addCardBtn}}>
-						<Text style={styles.addCardBtn}>Submit</Text>
+						style={styles.inverseSubmitBtn}>
+						<Text style={styles.inverseSubmitBtn}>Submit</Text>
 					</TouchableOpacity>
 				</View>
-			</View>
+			</ScrollView>
 		);
 	}
 }

@@ -64,7 +64,7 @@ class Question extends Component {
 					{this.props.currentQuestion + 1} / {questions.length}
 				</Text>
 				
-				<View>
+				<View style={styles.container}>
 					<Animated.View
 						style={[
 							styles.flipCard,
@@ -88,17 +88,25 @@ class Question extends Component {
 						</Text>
 					</Animated.View>
 				</View>
-				<TouchableOpacity onPress={() => this.flipCard()}>
-					<Text style={styles.switchBtn}>
-						{this.state.questionCardFace ? 'View Answer' : 'View Question'}
-					</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => this.props.onSubmit('correct')}>
-					<Text style={styles.correctBtn}>Correct</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => this.props.onSubmit('incorrect')}>
-					<Text style={styles.incorrectBtn}>In Correct</Text>
-				</TouchableOpacity>
+				<View style={styles.container}>
+					<TouchableOpacity onPress={() => this.flipCard()}>
+						<Text style={styles.switchBtn}>
+							{this.state.questionCardFace ? 'View Answer' : 'View Question'}
+						</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={styles.container}>
+					<TouchableOpacity
+						onPress={() => this.props.onSubmit('correct')}
+						style={{...styles.regularBtn, ...styles.correctBtn}}>
+						<Text style={styles.correctBtn}>Correct</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						onPress={() => this.props.onSubmit('incorrect')}
+						style={{...styles.regularBtn, ...styles.incorrectBtn}}>
+						<Text style={styles.incorrectBtn}>In Correct</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		);
 	}

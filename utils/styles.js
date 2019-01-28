@@ -53,8 +53,9 @@ const styles = StyleSheet.create({
 	},
 	inputField: {
 		padding: 10,
+		marginBottom: 20,
 		fontSize: 20,
-		height: 40,
+		height: 50,
 		borderWidth: 1,
 		marginRight: 30,
 		marginLeft: 30,
@@ -87,16 +88,10 @@ const styles = StyleSheet.create({
 	},
 	correctBtn: {
 		backgroundColor: green,
-		color: white,
-		margin: 10,
-		fontWeight: 'bold',
-		fontSize: 16
+		color: white
 	},
 	incorrectBtn: {
 		backgroundColor: red,
-		margin: 10,
-		fontWeight: 'bold',
-		fontSize: 16,
 		color: white,
 	},
 	heading: {
@@ -108,16 +103,6 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		fontWeight: 'bold',
 		color: lightGrey
-	},
-	actions: {
-		flexDirection: 'row'
-	},
-	actionsBtn: {
-		backgroundColor: black,
-		color: white,
-		margin: 10,
-		padding: 20,
-		borderWidth: 1
 	},
 	cardNumber: {
 		fontSize: 14,
@@ -147,6 +132,10 @@ const styles = StyleSheet.create({
 		color: lightGrey,
 		fontWeight: 'bold',
 		margin: 5
+	},
+	disabledClass: {
+		backgroundColor: lightGrey,
+		color: white
 	}
 });
 

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import styles from '../utils/styles';
 import Question from './Question';
-import {View, Text, TouchableOpacity} from 'react-native';
+import Result from './Result';
 
 const initialState = {
 	correct: 0,
@@ -27,30 +26,21 @@ class DeckQuestions extends Component {
 		}));
 	};
 	
+	restartQuiz = () => {
+		this.setState({...initialState});
+	};
+	
 	render() {
 		if (this.state.quizCompleted) {
 			const {deck} = this.props.navigation.state.params;
-			const totalQuestions = deck.questions.length;
-			const {correct, incorrect} = this.state;
 			return (
-				<View style={styles.container}>
-					<Text style={styles.heading}>Quiz Completed</Text>
-					<Text style={styles.incorrect}>
-						{incorrect} answer(s) were incorrect.({((incorrect / totalQuestions) * 100).toFixed(2)}%)
-					</Text>
-					<Text style={styles.correct}>
-						{correct} answer(s) were correct.({((correct / totalQuestions) * 100).toFixed(2)}%)
-					</Text>
-					<Text style={styles.total}>{totalQuestions} Total questions.</Text>
-					<View style={styles.actions}>
-						<TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-							<Text style={styles.actionsBtn}>Go Back!</Text>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={() => this.setState({...initialState})}>
-							<Text style={styles.actionsBtn}>Restart Quiz</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
+				<Result
+					deck={deck}
+					correct={this.state.correct}
+					incorrect={this.state.incorrect}
+					navigation={this.props.navigation}
+					restartQuiz={this.restartQuiz}
+				/>
 			);
 		}
 		const {questions} = this.props.navigation.state.params.deck;
