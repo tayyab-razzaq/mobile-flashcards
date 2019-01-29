@@ -135,6 +135,25 @@ const styles = StyleSheet.create({
 		padding: 30,
 		marginTop: 20
 	},
+	flipCardBack: {
+		backgroundColor: white,
+	},
+	backContent: {
+		flex: 1,
+		position: 'absolute',
+		top: 0,
+		justifyContent: 'center'
+	},
+	deckTitleQuestion: {
+		fontSize: 20,
+		color: black,
+		fontWeight: 'bold',
+		justifyContent: 'center',
+		textAlign: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		marginBottom: 20
+	},
 	content: {
 		fontSize: 20,
 		color: black,
@@ -143,11 +162,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		alignItems: 'center',
 		alignSelf: 'center'
-	},
-	flipCardBack: {
-		backgroundColor: white,
-		position: 'absolute',
-		top: 0
 	},
 	switchBtn: {
 		fontSize: 16,

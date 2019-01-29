@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import {addCardToDeck} from '../actions/decksActions';
 import {connect} from 'react-redux';
 import styles from '../utils/styles';
-import {ScrollView, TextInput, TouchableOpacity, Text} from 'react-native';
+import {
+	TextInput,
+	TouchableOpacity,
+	Text,
+	KeyboardAvoidingView,
+	TouchableWithoutFeedback,
+	Keyboard,
+	View
+} from 'react-native';
 
 class AddCard extends Component {
 	constructor(props) {
@@ -45,28 +53,32 @@ class AddCard extends Component {
 	render() {
 		const {card} = this.state;
 		return (
-			<ScrollView style={styles.container}>
-				<TextInput
-					value={card.question}
-					style={styles.inputField}
-					placeholder="enter question"
-					clearButtonMode="while-editing"
-					onChangeText={text => this.onChange(text, 'question')}
-				/>
-				<TextInput
-					value={card.answer}
-					style={styles.inputField}
-					placeholder="enter answer"
-					clearButtonMode="while-editing"
-					onChangeText={text => this.onChange(text, 'answer')}
-				/>
-				
-				<TouchableOpacity
-					onPress={this.onSubmit}
-					style={styles.inverseSubmitBtn}>
-					<Text style={styles.inverseSubmitBtn}>Submit</Text>
-				</TouchableOpacity>
-			</ScrollView>
+			<KeyboardAvoidingView style={styles.container} behavior="padding">
+				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+					<View style={styles.container}>
+						<TextInput
+							value={card.question}
+							style={styles.inputField}
+							placeholder="enter question"
+							clearButtonMode="while-editing"
+							onChangeText={text => this.onChange(text, 'question')}
+						/>
+						<TextInput
+							value={card.answer}
+							style={styles.inputField}
+							placeholder="enter answer"
+							clearButtonMode="while-editing"
+							onChangeText={text => this.onChange(text, 'answer')}
+						/>
+						
+						<TouchableOpacity
+							onPress={this.onSubmit}
+							style={styles.inverseSubmitBtn}>
+							<Text style={styles.inverseSubmitBtn}>Submit</Text>
+						</TouchableOpacity>
+					</View>
+				</TouchableWithoutFeedback>
+			</KeyboardAvoidingView>
 		);
 	}
 }

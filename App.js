@@ -7,6 +7,7 @@ import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
 import AddCard from './components/AddCard';
 import DeckQuestions from './components/DeckQuestions';
+import {setupDeviceNotifications} from 'utils/notifications'
 
 const TabNavigator = createMaterialTopTabNavigator(
 	{
@@ -32,9 +33,19 @@ const AppNavigator = createStackNavigator(
 
 const AppContainer = createAppContainer(AppNavigator);
 
-const App = props => (
-	<Provider store={store} {...props}>
-		<AppContainer/>
-	</Provider>
-);
+class App extends React.Component {
+	
+	componentDidMount() {
+		setupDeviceNotifications();
+	}
+	
+	render() {
+		return (
+			<Provider store={store} {...props}>
+				<AppContainer/>
+			</Provider>
+		);
+	}
+}
+
 export default App;
