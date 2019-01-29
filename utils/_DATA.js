@@ -12,15 +12,30 @@ export const getDeck = id => {
 	});
 };
 
-export const saveDeckTitle = title => {
+export const saveDeckTitle = async title => {
+	const decks = await getDecks();
+	const updatedDecks = {
+		...decks,
+		[title]: {
+			title,
+			questions: []
+		}
+	};
 	return new Promise(res => {
 		setTimeout(() => {
-			AsyncStorage.mergeItem(APP_STORE_KEY, JSON.stringify({
-				[title]: {
-					title,
-					questions: []
-				}
-			}), () => getDecks().then(decks => res(decks ? {...decks}: {})));
+			AsyncStorage.mergeItem(APP_STORE_KEY, JSON.stringify(updatedDecks));
+			res({...updatedDecks});
+		}, 100);
+	});
+};
+
+export const removeDeck = async title => {
+	const decks = await getDecks();
+	const filteredDecks = Object.keys(decks).filter(key => key !== title);
+	return new Promise(res => {
+		setTimeout(() => {
+			AsyncStorage.mergeItem(APP_STORE_KEY, JSON.stringify(filteredDecks));
+			res({...filteredDecks});
 		}, 100);
 	});
 };

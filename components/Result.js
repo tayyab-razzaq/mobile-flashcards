@@ -22,7 +22,7 @@ const Result = props => {
 			<View style={styles.container}>
 				<TouchableOpacity
 					onPress={() => props.navigation.goBack()} style={{...styles.regularBtn, ...styles.addCardBtn}}>
-					<Text style={styles.addCardBtn}>Go Back!</Text>
+					<Text style={styles.addCardBtn}>Back to Deck</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={props.restartQuiz} style={{...styles.regularBtn, ...styles.startQuizBtn}}>
 					<Text style={styles.startQuizBtn}>Restart Quiz</Text>

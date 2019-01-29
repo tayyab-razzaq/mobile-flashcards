@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
 		backgroundColor: WHITE_COLOR,
 		color: BLACK_COLOR
 	},
+	deleteDeckBtn: {
+		backgroundColor: GREY_COLOR,
+		color: BLACK_COLOR
+	},
 	startQuizBtn: {
 		backgroundColor: BLACK_COLOR,
 		color: WHITE_COLOR
@@ -125,19 +129,16 @@ const styles = StyleSheet.create({
 	},
 	flippableCard: {
 		alignItems: 'center',
-		justifyContent: 'center',
-		backfaceVisibility: 'hidden',
-		padding: 30,
-		marginTop: 20
+		justifyContent: 'center'
 	},
 	flippableCardBackContent: {
 		backgroundColor: WHITE_COLOR,
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	flippableCardContent: {
 		backgroundColor: GREY_COLOR,
-		flex: 1,
-		position: 'absolute',
-		top: 0,
+		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	deckTitleQuestion: {

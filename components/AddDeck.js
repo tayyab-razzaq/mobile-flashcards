@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {saveNewDeck} from '../actions/decksActions';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { saveNewDeck } from '../actions/decksActions';
+import { connect } from 'react-redux';
 import styles from '../utils/styles';
 import {
 	TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 	TextInput,
 	TouchableWithoutFeedback,
 	Keyboard,
-	KeyboardAvoidingView
+	KeyboardAvoidingView,
 } from 'react-native';
 
 class AddDeck extends Component {
@@ -22,45 +22,49 @@ class AddDeck extends Component {
 	}
 	
 	static navigationOptions = {
-		title: 'Add Deck'
+		title: 'Add Deck',
 	};
 	
 	onSubmit = () => {
 		const decks = this.props.decksReducer.get('decks') || {};
-		const {title} = this.state;
+		const { title } = this.state;
 		if (title in decks) {
 			return;
 		}
 		this.props.saveNewDeck(title).then(() => {
-			this.setState({title: ''});
-			const {goBack} = this.props.navigation;
+			this.setState({ title: '' });
+			const { goBack } = this.props.navigation;
 			goBack();
 		});
 	};
 	
 	render() {
-		const {title} = this.state;
+		const { title } = this.state;
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding">
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<View>
-						<Text style={styles.deckTitleQuestion}>What is the title of new Deck ?</Text>
-					</View>
-					<View>
-						<TextInput
-							style={styles.inputField}
-							value={title}
-							placeholder="enter deck title"
-							clearButtonMode="while-editing"
-							onChangeText={text => this.setState({title: text})}
-						/>
-					</View>
-					<View>
-						<TouchableOpacity
-							onPress={this.onSubmit}
-							style={styles.inverseSubmitBtn}>
-							<Text style={styles.inverseSubmitBtn}>Submit</Text>
-						</TouchableOpacity>
+						<View>
+							<Text style={styles.deckTitleQuestion}>
+								What is the title of new Deck ?
+							</Text>
+						</View>
+						<View>
+							<TextInput
+								style={styles.inputField}
+								value={title}
+								placeholder="enter deck title"
+								clearButtonMode="while-editing"
+								onChangeText={text => this.setState({ title: text })}
+							/>
+						</View>
+						<View>
+							<TouchableOpacity
+								onPress={this.onSubmit}
+								style={styles.inverseSubmitBtn}>
+								<Text style={styles.inverseSubmitBtn}>Submit</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</TouchableWithoutFeedback>
 			</KeyboardAvoidingView>
@@ -68,10 +72,13 @@ class AddDeck extends Component {
 	}
 }
 
-const mapStateToProps = ({decksReducer}) => ({decksReducer});
+const mapStateToProps = ({ decksReducer }) => ({ decksReducer });
 
 const mapDispatchToProps = dispatch => ({
-	saveNewDeck: title => dispatch(saveNewDeck(title))
+	saveNewDeck: title => dispatch(saveNewDeck(title)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AddDeck);

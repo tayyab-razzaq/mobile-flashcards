@@ -21,12 +21,12 @@ class DeckQuestions extends Component {
 		title: `Quiz: ${navigation.state.params.deck.title}`
 	});
 	
-	onSubmit = answer => {
+	onSubmit = property => {
+		const totalQuestionsLength = this.props.navigation.state.params.deck.questions.length;
 		this.setState(prevState => ({
-			...prevState,
-			[answer]: prevState[answer] + 1,
+			[property]: prevState[property] + 1,
 			currentQuestion: prevState.currentQuestion + 1,
-			quizCompleted: prevState.currentQuestion + 1 === this.props.navigation.state.params.deck.questions.length
+			quizCompleted: prevState.currentQuestion + 1 === totalQuestionsLength
 		}), () => {
 			if(this.state.quizCompleted) {
 				dismissAllScheduledNotifications().then(setupDeviceNotifications);

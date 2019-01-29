@@ -3,7 +3,8 @@ import {
 	GET_ALL_DECKS,
 	GET_SINGLE_DECK,
 	SAVE_NEW_DECK,
-	ADD_CARD_TO_DECK
+	ADD_CARD_TO_DECK,
+	DELETE_DECK
 } from '../common/actionTypes';
 
 const initialState = new Map({
@@ -17,10 +18,11 @@ const initialState = new Map({
 	question: {}
 });
 
-export default function decksReducer(state = initialState, action) {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case GET_ALL_DECKS:
 		case SAVE_NEW_DECK:
+		case DELETE_DECK:
 			return state.merge({decks: action.response});
 		case GET_SINGLE_DECK:
 		case ADD_CARD_TO_DECK:
@@ -28,4 +30,4 @@ export default function decksReducer(state = initialState, action) {
 		default:
 			return state;
 	}
-}
+};

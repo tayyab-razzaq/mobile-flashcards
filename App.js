@@ -41,7 +41,7 @@ class App extends React.Component {
 	
 	render() {
 		return (
-			<Provider store={store} {...props}>
+			<Provider store={store} {...this.props}>
 				<AppContainer/>
 			</Provider>
 		);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {deleteDeck} from '../actions/decksActions';
 import styles from '../utils/styles';
 import { View, Text, TouchableOpacity } from 'react-native';
 
@@ -17,6 +18,11 @@ class Deck extends Component {
 		const deck = this.props.decksReducer.get('deck') || {};
 		const { navigate } = this.props.navigation;
 		navigate('DeckQuestions', {deck});
+	};
+	
+	deleteDeck = () => {
+		const {title} = this.props.decksReducer.get('deck');
+		this.props.deleteDeck(title);
 	};
 	
 	render() {
@@ -43,6 +49,12 @@ class Deck extends Component {
 						style={{...styles.regularBtn, ...styles.startQuizBtn, ...disabledClass}}>
 						<Text style={{...styles.startQuizBtn, ...disabledClass}}>Start Quiz</Text>
 					</TouchableOpacity>
+					<TouchableOpacity
+						onPress={this.deleteDeck}
+						disabled={disabled}
+						style={{...styles.regularBtn, ...styles.deleteDeckBtn}}>
+						<Text style={styles.deleteDeckBtn}>Delete Deck</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		);
@@ -51,4 +63,8 @@ class Deck extends Component {
 
 const mapStateToProps = ({ decksReducer }) => ({ decksReducer });
 
-export default connect(mapStateToProps)(Deck);
+const mapDispatchToProps = dispatch => ({
+	deleteDeck: title => dispatch(deleteDeck(title))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deck);

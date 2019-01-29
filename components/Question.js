@@ -1,123 +1,82 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styles from '../utils/styles';
-import {View, Text, TouchableOpacity, Animated} from 'react-native';
+import { View, Text, TouchableOpacity} from 'react-native';
+import FlipCard from 'react-native-flip-card';
 
 class Question extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			showQuestion: true,
-			changed: false,
+			showQuestion: true
 		};
-		this.animatedValue = new Animated.Value(0);
-		this.value = 0;
-		this.animatedValue.addListener(({value}) => {
-			this.value = value;
-		});
-	}
-	
-	componentDidMount() {
-		this.frontInterpolate = this.animatedValue.interpolate({
-			inputRange: [0, 180],
-			outputRange: ['0deg', '180deg'],
-		});
-		this.backInterpolate = this.animatedValue.interpolate({
-			inputRange: [0, 180],
-			outputRange: ['180deg', '360deg'],
-		});
-		this.frontOpacity = this.animatedValue.interpolate({
-			inputRange: [89, 90],
-			outputRange: [1, 0],
-		});
-		this.backOpacity = this.animatedValue.interpolate({
-			inputRange: [89, 90],
-			outputRange: [0, 1],
-		});
 	}
 	
 	flipCard = () => {
-		this.setState(prevState => ({
-			showQuestion: !prevState.showQuestion,
-			changed: true,
-		}));
-		if (this.value >= 90) {
-			Animated.spring(this.animatedValue, {toValue: 0, friction: 8, tension: 10}).start();
-		}
-		else {
-			Animated.spring(this.animatedValue, {toValue: 180, friction: 8, tension: 10}).start();
-		}
+		this.setState(prevState => ({showQuestion: !prevState.showQuestion}));
 	};
 	
 	onSubmit = property => {
-		this.setState({showQuestion: true, changed: false}, () =>
+		this.setState({ showQuestion: true, changed: false }, () =>
 			this.props.onSubmit(property)
 		);
 	};
 	
 	render() {
-		const {questions, currentQuestion} = this.props;
-		const frontAnimatedStyle = {transform: [{rotateY: this.frontInterpolate}]};
-		const backAnimatedStyle = {transform: [{rotateY: this.backInterpolate}]};
-		
-		const showBackStyle = this.state.changed ? {} : {display: 'none'};
-		
+		const { questions, currentQuestion } = this.props;
+		const contentColor = this.state.showQuestion ? styles.flippableCardContent : styles.flippableCardBackContent;
 		return (
 			<View style={styles.container}>
-				<Text style={styles.cardNumber}>
-					{currentQuestion + 1} / {questions.length}
-				</Text>
-				
-				<View style={styles.container}>
-					
-					<Animated.View
-						style={{
-							...styles.flippableCard,
-							...frontAnimatedStyle,
-							...{opacity: this.frontOpacity},
-						}}>
-						<View style={styles.flippableCardContent}>
-							<Text style={styles.content}>Question</Text>
-							<Text style={styles.content}>
-								{questions[currentQuestion].question}
-							</Text>
-						</View>
-					</Animated.View>
-					<Animated.View
-						style={{
-							...backAnimatedStyle,
-							...styles.flippableCard,
-							...styles.flippableCardBack,
-							...{opacity: this.backOpacity},
-						}}>
-						<View
-							style={{
-								...styles.flippableCardContent,
-								...showBackStyle,
-								...styles.flippableCardBackContent
-							}}>
-							<Text style={styles.content}>Answer</Text>
-							<Text style={styles.content}>
-								{questions[currentQuestion].answer}
-							</Text>
-						</View>
-					</Animated.View>
-					<TouchableOpacity onPress={this.flipCard}>
-						{
-							this.state.showQuestion ?
-								<Text style={{...styles.flipCardBtn, ...styles.greenColor}}>View Answer</Text>
-								:
-								<Text style={{...styles.flipCardBtn, ...styles.redColor}}>View Question</Text>
-						}
-					</TouchableOpacity>
+				<View style={{ flex: 2 }}>
+					<Text style={{ ...styles.cardNumber, flex: 1 }}>
+						Question {currentQuestion + 1} / {questions.length}
+					</Text>
+					<View style={{ flex: 3}}>
+						<FlipCard
+							style={{...styles.flippableCard, ...contentColor}}
+							friction={8}
+							perspective={1000}
+							flipHorizontal
+							flipVertical={false}
+							flip={!this.state.showQuestion}
+							clickable={false}>
+							<View>
+								<Text style={{...styles.content, marginBottom: 20}}>Question</Text>
+								<Text style={styles.content}>
+									{questions[currentQuestion].question}
+								</Text>
+							</View>
+							<View>
+								<Text style={{...styles.content, marginBottom: 20}}>Answer</Text>
+								<Text style={styles.content}>
+									{questions[currentQuestion].answer}
+								</Text>
+							</View>
+						</FlipCard>
+					</View>
+					<View style={{ flex: 1 }}>
+						<TouchableOpacity onPress={this.flipCard}>
+							{this.state.showQuestion ? (
+								<Text style={{ ...styles.flipCardBtn, ...styles.greenColor }}>
+									View Answer
+								</Text>
+							) : (
+								<Text style={{ ...styles.flipCardBtn, ...styles.redColor }}>
+									View Question
+								</Text>
+							)}
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={{ flex: 1 }}>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('correct')}
-						style={{...styles.regularBtn, ...styles.correctBtn}}>
+						style={{ ...styles.regularBtn, ...styles.correctBtn }}>
 						<Text style={styles.correctBtn}>Correct</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('incorrect')}
-						style={{...styles.regularBtn, ...styles.incorrectBtn}}>
+						style={{ ...styles.regularBtn, ...styles.incorrectBtn }}>
 						<Text style={styles.incorrectBtn}>In Correct</Text>
 					</TouchableOpacity>
 				</View>
