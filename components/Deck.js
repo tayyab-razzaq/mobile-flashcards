@@ -22,19 +22,22 @@ class Deck extends Component {
 	
 	deleteDeck = () => {
 		const {title} = this.props.decksReducer.get('deck');
-		this.props.deleteDeck(title);
+		this.props.deleteDeck(title).then(() => {
+			const { navigate } = this.props.navigation;
+			navigate('DeckList');
+		});
 	};
 	
 	render() {
 		const deck = this.props.decksReducer.get('deck') || {};
 		const { questions } = deck;
-		const questionsCount = questions.length;
+		const questionsCount = questions ? questions.length: 0;
 		const disabled = questionsCount === 0;
 		const disabledClass = disabled ? styles.disabledClass : {};
 		return (
 			<View style={styles.container}>
 				<View style={styles.deckHolder}>
-					<Text style={styles.deckTitle}>{deck.title}</Text>
+					<Text style={styles.deckTitle}>{deck ? deck.title: ''}</Text>
 					<Text style={styles.questionsCount}>{`${questionsCount} Cards`}</Text>
 				</View>
 				<View>
@@ -51,7 +54,6 @@ class Deck extends Component {
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={this.deleteDeck}
-						disabled={disabled}
 						style={{...styles.regularBtn, ...styles.deleteDeckBtn}}>
 						<Text style={styles.deleteDeckBtn}>Delete Deck</Text>
 					</TouchableOpacity>

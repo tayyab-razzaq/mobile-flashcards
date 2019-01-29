@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styles from '../utils/styles';
-import { View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import FlipCard from 'react-native-flip-card';
 
 class Question extends Component {
@@ -17,21 +17,21 @@ class Question extends Component {
 	};
 	
 	onSubmit = property => {
-		this.setState({ showQuestion: true, changed: false }, () =>
+		this.setState({showQuestion: true, changed: false}, () =>
 			this.props.onSubmit(property)
 		);
 	};
 	
 	render() {
-		const { questions, currentQuestion } = this.props;
+		const {questions, currentQuestion} = this.props;
 		const contentColor = this.state.showQuestion ? styles.flippableCardContent : styles.flippableCardBackContent;
 		return (
 			<View style={styles.container}>
-				<View style={{ flex: 2 }}>
-					<Text style={{ ...styles.cardNumber, flex: 1 }}>
+				<View style={{flex: 2}}>
+					<Text style={{...styles.cardNumber, ...styles.flexOne}}>
 						Question {currentQuestion + 1} / {questions.length}
 					</Text>
-					<View style={{ flex: 3}}>
+					<View style={{flex: 3}}>
 						<FlipCard
 							style={{...styles.flippableCard, ...contentColor}}
 							friction={8}
@@ -41,42 +41,46 @@ class Question extends Component {
 							flip={!this.state.showQuestion}
 							clickable={false}>
 							<View>
-								<Text style={{...styles.content, marginBottom: 20}}>Question</Text>
-								<Text style={styles.content}>
-									{questions[currentQuestion].question}
-								</Text>
+								<View style={styles.container}>
+									<Text style={{...styles.content, marginBottom: 20}}>Question</Text>
+									<Text style={styles.content}>
+										{questions[currentQuestion].question}
+									</Text>
+								</View>
 							</View>
 							<View>
-								<Text style={{...styles.content, marginBottom: 20}}>Answer</Text>
-								<Text style={styles.content}>
-									{questions[currentQuestion].answer}
-								</Text>
+								<View style={styles.container}>
+									<Text style={{...styles.content, marginBottom: 20}}>Answer</Text>
+									<Text style={styles.content}>
+										{questions[currentQuestion].answer}
+									</Text>
+								</View>
 							</View>
 						</FlipCard>
 					</View>
-					<View style={{ flex: 1 }}>
+					<View style={styles.flexOne}>
 						<TouchableOpacity onPress={this.flipCard}>
 							{this.state.showQuestion ? (
-								<Text style={{ ...styles.flipCardBtn, ...styles.greenColor }}>
+								<Text style={{...styles.flipCardBtn, ...styles.greenColor}}>
 									View Answer
 								</Text>
 							) : (
-								<Text style={{ ...styles.flipCardBtn, ...styles.redColor }}>
+								<Text style={{...styles.flipCardBtn, ...styles.redColor}}>
 									View Question
 								</Text>
 							)}
 						</TouchableOpacity>
 					</View>
 				</View>
-				<View style={{ flex: 1 }}>
+				<View style={styles.flexOne}>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('correct')}
-						style={{ ...styles.regularBtn, ...styles.correctBtn }}>
+						style={{...styles.regularBtn, ...styles.correctBtn}}>
 						<Text style={styles.correctBtn}>Correct</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('incorrect')}
-						style={{ ...styles.regularBtn, ...styles.incorrectBtn }}>
+						style={{...styles.regularBtn, ...styles.incorrectBtn}}>
 						<Text style={styles.incorrectBtn}>In Correct</Text>
 					</TouchableOpacity>
 				</View>

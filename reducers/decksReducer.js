@@ -8,14 +8,11 @@ import {
 } from '../common/actionTypes';
 
 const initialState = new Map({
-	statusSuccess: false,
 	decks: {},
 	deck: {
 		title: '',
 		questions: []
-	},
-	questions: [],
-	question: {}
+	}
 });
 
 export default (state = initialState, action) => {

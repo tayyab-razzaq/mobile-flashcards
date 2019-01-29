@@ -36,12 +36,22 @@ class DeckList extends Component {
 	
 	render() {
 		const decks = this.props.decksReducer.get('decks') || {};
+		const deckList = Object.keys(decks).map(deckKey => decks[deckKey]);
+		if (deckList.length > 0) {
+			
+			return (
+				<FlatList
+					data={deckList} keyExtractor={(item, index) => index}
+					renderItem={({item}) => this.renderDeck(item)}
+				/>
+			);
+		}
 		return (
-			<FlatList
-				data={Object.keys(decks).map(deckKey => decks[deckKey])}
-				// keyExtractor={(item, index) => index}
-				renderItem={({ item }) => this.renderDeck(item)}
-			/>
+			<View style={styles.container}>
+				<Text style={styles.content}>
+					There is no deck please swipe to next tab to add deck
+				</Text>
+			</View>
 		);
 	}
 }

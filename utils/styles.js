@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		marginBottom: 10,
-		color: BLACK_COLOR,
+		color: BLACK_COLOR
 	},
 	quizDetail: {
 		justifyContent: 'center',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 	cardNumber: {
 		fontSize: 16,
 		color: BLACK_COLOR,
-		alignSelf: 'flex-start'
+		alignSelf: 'center'
 	},
 	flippableCard: {
 		alignItems: 'center',
@@ -155,10 +155,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		color: BLACK_COLOR,
 		fontWeight: 'bold',
-		justifyContent: 'center',
-		textAlign: 'center',
-		alignItems: 'center',
-		alignSelf: 'center'
+		textAlign: 'center'
 	},
 	flipCardBtn: {
 		fontSize: 16,
@@ -179,6 +176,15 @@ const styles = StyleSheet.create({
 	disabledClass: {
 		backgroundColor: GREY_COLOR,
 		color: WHITE_COLOR
+	},
+	flexOne: {
+		flex: 1
+	},
+	flexTwo: {
+		flex: 2
+	},
+	flexThree: {
+		flex: 3
 	}
 });
 
