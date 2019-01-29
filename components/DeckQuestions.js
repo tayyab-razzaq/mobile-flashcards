@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Question from './Question';
 import Result from './Result';
-import {dismissAllScheduledNotifications} from '../utils/notifications';
+import {dismissAllScheduledNotifications, setupDeviceNotifications} from '../utils/notifications';
 import {QUIZ_INITIAL_STATE} from '../common/constants';
 
 
@@ -29,7 +29,7 @@ class DeckQuestions extends Component {
 			quizCompleted: prevState.currentQuestion + 1 === this.props.navigation.state.params.deck.questions.length
 		}), () => {
 			if(this.state.quizCompleted) {
-				dismissAllScheduledNotifications();
+				dismissAllScheduledNotifications().then(setupDeviceNotifications);
 			}
 		});
 	};

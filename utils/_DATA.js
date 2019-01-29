@@ -8,7 +8,7 @@ export const getDecks = () => {
 
 export const getDeck = id => {
 	return new Promise(res => {
-		setTimeout(() => getDecks().then(decks => res({...decks[id]})), 100);
+		setTimeout(() => getDecks().then(decks => res(decks ? {...decks[id]} : {})), 100);
 	});
 };
 
@@ -20,7 +20,7 @@ export const saveDeckTitle = title => {
 					title,
 					questions: []
 				}
-			}), () => getDecks().then(decks => res({...decks})));
+			}), () => getDecks().then(decks => res(decks ? {...decks}: {})));
 		}, 100);
 	});
 };

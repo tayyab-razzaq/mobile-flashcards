@@ -26,7 +26,7 @@ class AddDeck extends Component {
 	};
 	
 	onSubmit = () => {
-		const decks = this.props.decksReducer.get('decks');
+		const decks = this.props.decksReducer.get('decks') || {};
 		const {title} = this.state;
 		if (title in decks) {
 			return;

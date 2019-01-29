@@ -14,13 +14,13 @@ class Deck extends Component {
 	};
 	
 	onStartQuizClick = () => {
-		const deck = this.props.decksReducer.get('deck');
+		const deck = this.props.decksReducer.get('deck') || {};
 		const { navigate } = this.props.navigation;
 		navigate('DeckQuestions', {deck});
 	};
 	
 	render() {
-		const deck = this.props.decksReducer.get('deck');
+		const deck = this.props.decksReducer.get('deck') || {};
 		const { questions } = deck;
 		const questionsCount = questions.length;
 		const disabled = questionsCount === 0;

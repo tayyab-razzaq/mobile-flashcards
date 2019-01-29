@@ -90,7 +90,12 @@ class Question extends Component {
 							...styles.flippableCardBack,
 							...{opacity: this.backOpacity},
 						}}>
-						<View style={{...styles.flippableCardContent, ...showBackStyle}}>
+						<View
+							style={{
+								...styles.flippableCardContent,
+								...showBackStyle,
+								...styles.flippableCardBackContent
+							}}>
 							<Text style={styles.content}>Answer</Text>
 							<Text style={styles.content}>
 								{questions[currentQuestion].answer}

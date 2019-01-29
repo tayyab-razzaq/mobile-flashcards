@@ -35,7 +35,7 @@ class DeckList extends Component {
 	};
 	
 	render() {
-		const decks = this.props.decksReducer.get('decks');
+		const decks = this.props.decksReducer.get('decks') || {};
 		return (
 			<FlatList
 				data={Object.keys(decks).map(deckKey => decks[deckKey])}

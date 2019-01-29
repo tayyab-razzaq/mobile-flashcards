@@ -7,7 +7,7 @@ import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
 import AddCard from './components/AddCard';
 import DeckQuestions from './components/DeckQuestions';
-import {setupDeviceNotifications} from 'utils/notifications'
+import {setupDeviceNotifications} from './utils/notifications'
 
 const TabNavigator = createMaterialTopTabNavigator(
 	{

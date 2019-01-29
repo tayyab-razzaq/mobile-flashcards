@@ -124,17 +124,17 @@ const styles = StyleSheet.create({
 		alignSelf: 'flex-start'
 	},
 	flippableCard: {
-		backgroundColor: GREY_COLOR,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backfaceVisibility: 'hidden',
 		padding: 30,
 		marginTop: 20
 	},
-	flippableCardBack: {
+	flippableCardBackContent: {
 		backgroundColor: WHITE_COLOR,
 	},
 	flippableCardContent: {
+		backgroundColor: GREY_COLOR,
 		flex: 1,
 		position: 'absolute',
 		top: 0,

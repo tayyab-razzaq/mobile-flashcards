@@ -35,7 +35,7 @@ class AddCard extends Component {
 	};
 	
 	onSubmit = () => {
-		const deck = this.props.decksReducer.get('deck');
+		const deck = this.props.decksReducer.get('deck') || {};
 		const {title, questions} = deck;
 		const {card} = this.state;
 		const sameQuestions = questions.filter(
