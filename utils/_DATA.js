@@ -1,67 +1,39 @@
-let decks = {
-	React: {
-		title: 'React',
-		questions: [
-			{
-				question: 'What is React?',
-				answer: 'A library for managing user interfaces',
-			},
-			{
-				question: 'Where do you make Ajax requests in React?',
-				answer: 'The componentDidMount lifecycle event',
-			},
-		],
-	},
-	JavaScript: {
-		title: 'JavaScript',
-		questions: [
-			{
-				question: 'What is a closure?',
-				answer:
-					'The combination of a function and the lexical environment within which that function was declared.',
-			},
-		],
-	},
+import {AsyncStorage} from 'react-native'
+import {APP_STORE_KEY} from '../common/constants';
+
+
+export const getDecks = () => {
+	return AsyncStorage.getItem(APP_STORE_KEY).then(JSON.parse);
 };
 
-export function getDecks() {
+export const getDeck = id => {
 	return new Promise(res => {
-		setTimeout(() => res({ ...decks }), 100);
+		setTimeout(() => getDecks().then(decks => res({...decks[id]})), 100);
 	});
-}
+};
 
-export function getDeck(id) {
-	return new Promise(res => {
-		setTimeout(() => res({ ...decks[id] }), 100);
-	});
-}
-
-export function saveDeckTitle(title) {
+export const saveDeckTitle = title => {
 	return new Promise(res => {
 		setTimeout(() => {
-			decks = {
-				...decks,
+			AsyncStorage.mergeItem(APP_STORE_KEY, JSON.stringify({
 				[title]: {
-					title: title,
-					questions: [],
-				},
-			};
-			res(decks);
+					title,
+					questions: []
+				}
+			}), () => getDecks().then(decks => res({...decks})));
 		}, 100);
 	});
-}
+};
 
-export function addCardToDeck(title, card) {
+export const addCardToDeck = (title, card) => {
 	return new Promise(res => {
-		setTimeout(() => {
-			decks = {
-				...decks,
+		getDeck(title).then(deck => {
+			AsyncStorage.mergeItem(APP_STORE_KEY, JSON.stringify({
 				[title]: {
-					...decks[title],
-					questions: [...decks[title].questions, card],
-				},
-			};
-			res({ ...decks[title] });
-		}, 100);
+					title,
+					questions: [...deck.questions, card]
+				}
+			}), () => getDeck(title).then(deck => res({...deck})));
+		});
 	});
-}
+};

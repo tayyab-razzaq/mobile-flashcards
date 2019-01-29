@@ -1,10 +1,5 @@
 import { StyleSheet } from 'react-native';
-
-const white = '#FFF';
-const black = '#000';
-const lightGrey = '#C6C6C6';
-export const red = '#BA0F0F';
-export const green = '#0A7203';
+import {WHITE_COLOR, GREY_COLOR, BLACK_COLOR, GREEN_COLOR, RED_COLOR} from '../common/constants';
 
 const styles = StyleSheet.create({
 	container: {
@@ -23,7 +18,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 	},
 	questionsCount: {
-		color: lightGrey,
+		color: GREY_COLOR,
 		marginTop: 10,
 		marginBottom: 20,
 		textAlign: 'center'
@@ -33,8 +28,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderBottomWidth: 1,
-		borderBottomColor: lightGrey,
-		backgroundColor: white,
+		borderBottomColor: GREY_COLOR,
+		backgroundColor: WHITE_COLOR,
 		textAlign: 'center',
 		borderWidth: 0.5,
 		padding: 10,
@@ -43,19 +38,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 5,
 		borderWidth: 1,
-		borderColor: black,
+		borderColor: BLACK_COLOR,
 		padding: 20,
 		marginLeft: 50,
 		marginRight: 50,
 		marginTop: 10
 	},
 	addCardBtn: {
-		backgroundColor: white,
-		color: black
+		backgroundColor: WHITE_COLOR,
+		color: BLACK_COLOR
 	},
 	startQuizBtn: {
-		backgroundColor: black,
-		color: white
+		backgroundColor: BLACK_COLOR,
+		color: WHITE_COLOR
 	},
 	inputField: {
 		padding: 10,
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
 	submitBtn: {
 		flex: 1,
 		alignItems: 'center',
-		borderColor: black,
+		borderColor: BLACK_COLOR,
 		borderRadius: 5,
 		borderWidth: 1,
 		padding: 20,
@@ -85,20 +80,20 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		marginLeft: 40,
 		marginRight: 40,
-		backgroundColor: black,
-		color: white
+		backgroundColor: BLACK_COLOR,
+		color: WHITE_COLOR
 	},
 	regularSubmitBtn: {
-		backgroundColor: black,
-		color: white,
+		backgroundColor: BLACK_COLOR,
+		color: WHITE_COLOR,
 	},
 	correctBtn: {
-		backgroundColor: green,
-		color: white
+		backgroundColor: GREEN_COLOR,
+		color: WHITE_COLOR
 	},
 	incorrectBtn: {
-		backgroundColor: red,
-		color: white,
+		backgroundColor: RED_COLOR,
+		color: WHITE_COLOR,
 	},
 	quizCompleted: {
 		fontSize: 24,
@@ -107,7 +102,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		marginBottom: 10,
-		color: black,
+		color: BLACK_COLOR,
 	},
 	quizDetail: {
 		justifyContent: 'center',
@@ -118,27 +113,28 @@ const styles = StyleSheet.create({
 	},
 	quizSummary: {
 		marginTop: 20,
+		marginBottom: 20,
 		fontWeight: 'bold',
 		fontSize: 16,
-		color: lightGrey
+		color: GREY_COLOR
 	},
 	cardNumber: {
 		fontSize: 16,
-		color: black,
+		color: BLACK_COLOR,
 		alignSelf: 'flex-start'
 	},
-	flipCard: {
-		backgroundColor: lightGrey,
+	flippableCard: {
+		backgroundColor: GREY_COLOR,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backfaceVisibility: 'hidden',
 		padding: 30,
 		marginTop: 20
 	},
-	flipCardBack: {
-		backgroundColor: white,
+	flippableCardBack: {
+		backgroundColor: WHITE_COLOR,
 	},
-	backContent: {
+	flippableCardContent: {
 		flex: 1,
 		position: 'absolute',
 		top: 0,
@@ -146,7 +142,7 @@ const styles = StyleSheet.create({
 	},
 	deckTitleQuestion: {
 		fontSize: 20,
-		color: black,
+		color: BLACK_COLOR,
 		fontWeight: 'bold',
 		justifyContent: 'center',
 		textAlign: 'center',
@@ -156,16 +152,15 @@ const styles = StyleSheet.create({
 	},
 	content: {
 		fontSize: 20,
-		color: black,
+		color: BLACK_COLOR,
 		fontWeight: 'bold',
 		justifyContent: 'center',
 		textAlign: 'center',
 		alignItems: 'center',
 		alignSelf: 'center'
 	},
-	switchBtn: {
+	flipCardBtn: {
 		fontSize: 16,
-		color: lightGrey,
 		fontWeight: 'bold',
 		marginTop: 20,
 		marginBottom: 30,
@@ -174,9 +169,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		alignSelf: 'center'
 	},
+	redColor: {
+		color: RED_COLOR
+	},
+	greenColor: {
+		color: GREEN_COLOR
+	},
 	disabledClass: {
-		backgroundColor: lightGrey,
-		color: white
+		backgroundColor: GREY_COLOR,
+		color: WHITE_COLOR
 	}
 });
 

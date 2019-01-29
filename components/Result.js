@@ -5,17 +5,19 @@ import styles from '../utils/styles';
 const Result = props => {
 	const totalQuestions = props.deck.questions.length;
 	const {correct, incorrect} = props;
+	const correctPercentage = ((correct / totalQuestions) * 100).toFixed(2);
+	const incorrectPercentage = ((incorrect / totalQuestions) * 100).toFixed(2);
 	return (
 		<View style={styles.container}>
 			<View style={styles.container}>
 				<Text style={{...styles.quizCompleted}}>Quiz Completed</Text>
-				<Text style={{...styles.incorrectBtn, ...styles.quizDetail}}>
-					{incorrect} answer(s) were incorrect.({((incorrect / totalQuestions) * 100).toFixed(2)}%)
-				</Text>
-				<Text style={{...styles.correctBtn, ...styles.quizDetail}}>
-					{correct} answer(s) were correct.({((correct / totalQuestions) * 100).toFixed(2)}%)
-				</Text>
 				<Text style={{...styles.quizSummary, ...styles.quizDetail}}>{totalQuestions} Total questions.</Text>
+				<Text style={{...styles.correctBtn, ...styles.quizDetail}}>
+					{correct} answer(s) were correct.({correctPercentage}%)
+				</Text>
+				<Text style={{...styles.incorrectBtn, ...styles.quizDetail}}>
+					{incorrect} answer(s) were incorrect.({incorrectPercentage}%)
+				</Text>
 			</View>
 			<View style={styles.container}>
 				<TouchableOpacity

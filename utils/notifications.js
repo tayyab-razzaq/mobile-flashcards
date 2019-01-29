@@ -1,14 +1,13 @@
 import {AsyncStorage} from 'react-native';
 import {Notifications, Permissions} from 'expo';
 
-const NOTIFICATION_KEY = 'MOBILE_FLASHCARD_NOTIFICATION_KEY';
-const PERMISSION_GRANTED_STATUS_NAME = 'granted';
+import {NOTIFICATION_KEY, PERMISSION_GRANTED_STATUS_NAME} from '../common/constants';
 
-export function dismissAllScheduledNotifications() {
+export const dismissAllScheduledNotifications = () => {
 	return AsyncStorage.removeItem(NOTIFICATION_KEY).then(Notifications.cancelAllScheduledNotificationsAsync);
-}
+};
 
-function getDeviceNotification() {
+const getDeviceNotification = () => {
 	return {
 		title: 'Daily Quiz Reminder',
 		body: 'Please solve any quiz today',
@@ -22,9 +21,9 @@ function getDeviceNotification() {
 			sound: true
 		}
 	};
-}
+};
 
-export function setupDeviceNotifications() {
+export const setupDeviceNotifications = () => {
 	AsyncStorage.getItem(NOTIFICATION_KEY).then(JSON.parse).then(data => {
 		if (data === null) {
 			Permissions.askAsync(Permissions.NOTIFICATIONS).then(({status}) => {
@@ -46,4 +45,4 @@ export function setupDeviceNotifications() {
 			});
 		}
 	});
-}
+};

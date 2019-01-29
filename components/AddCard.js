@@ -59,14 +59,14 @@ class AddCard extends Component {
 						<TextInput
 							value={card.question}
 							style={styles.inputField}
-							placeholder="enter question"
+							placeholder="Enter Question"
 							clearButtonMode="while-editing"
 							onChangeText={text => this.onChange(text, 'question')}
 						/>
 						<TextInput
 							value={card.answer}
 							style={styles.inputField}
-							placeholder="enter answer"
+							placeholder="Enter Answer"
 							clearButtonMode="while-editing"
 							onChangeText={text => this.onChange(text, 'answer')}
 						/>

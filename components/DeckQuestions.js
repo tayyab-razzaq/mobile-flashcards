@@ -2,20 +2,24 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Question from './Question';
 import Result from './Result';
+import {dismissAllScheduledNotifications} from '../utils/notifications';
+import {QUIZ_INITIAL_STATE} from '../common/constants';
 
-const initialState = {
-	correct: 0,
-	incorrect: 0,
-	currentQuestion: 0,
-	quizCompleted: false,
-};
+
 
 class DeckQuestions extends Component {
+	
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			...QUIZ_INITIAL_STATE
+		};
+	}
+	
 	static navigationOptions = ({navigation}) => ({
 		title: `Quiz: ${navigation.state.params.deck.title}`
 	});
-	
-	state = {...initialState};
 	
 	onSubmit = answer => {
 		this.setState(prevState => ({
@@ -23,11 +27,15 @@ class DeckQuestions extends Component {
 			[answer]: prevState[answer] + 1,
 			currentQuestion: prevState.currentQuestion + 1,
 			quizCompleted: prevState.currentQuestion + 1 === this.props.navigation.state.params.deck.questions.length
-		}));
+		}), () => {
+			if(this.state.quizCompleted) {
+				dismissAllScheduledNotifications();
+			}
+		});
 	};
 	
 	restartQuiz = () => {
-		this.setState({...initialState});
+		this.setState({...QUIZ_INITIAL_STATE});
 	};
 	
 	render() {

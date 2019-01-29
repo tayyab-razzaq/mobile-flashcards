@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styles from '../utils/styles';
-import { View, Text, TouchableOpacity, Animated } from 'react-native';
+import {View, Text, TouchableOpacity, Animated} from 'react-native';
 
 class Question extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class Question extends Component {
 		};
 		this.animatedValue = new Animated.Value(0);
 		this.value = 0;
-		this.animatedValue.addListener(({ value }) => {
+		this.animatedValue.addListener(({value}) => {
 			this.value = value;
 		});
 	}
@@ -42,35 +42,23 @@ class Question extends Component {
 			changed: true,
 		}));
 		if (this.value >= 90) {
-			Animated.spring(this.animatedValue, {
-				toValue: 0,
-				friction: 8,
-				tension: 10,
-			}).start();
+			Animated.spring(this.animatedValue, {toValue: 0, friction: 8, tension: 10}).start();
 		}
 		else {
-			Animated.spring(this.animatedValue, {
-				toValue: 180,
-				friction: 8,
-				tension: 10,
-			}).start();
+			Animated.spring(this.animatedValue, {toValue: 180, friction: 8, tension: 10}).start();
 		}
 	};
 	
 	onSubmit = property => {
-		this.setState({ showQuestion: true, changed: false }, () =>
+		this.setState({showQuestion: true, changed: false}, () =>
 			this.props.onSubmit(property)
 		);
 	};
 	
 	render() {
-		const { questions, currentQuestion } = this.props;
-		const frontAnimatedStyle = {
-			transform: [{ rotateY: this.frontInterpolate }],
-		};
-		const backAnimatedStyle = {
-			transform: [{ rotateY: this.backInterpolate }],
-		};
+		const {questions, currentQuestion} = this.props;
+		const frontAnimatedStyle = {transform: [{rotateY: this.frontInterpolate}]};
+		const backAnimatedStyle = {transform: [{rotateY: this.backInterpolate}]};
 		
 		const showBackStyle = this.state.changed ? {} : {display: 'none'};
 		
@@ -84,11 +72,11 @@ class Question extends Component {
 					
 					<Animated.View
 						style={{
-							...styles.flipCard,
+							...styles.flippableCard,
 							...frontAnimatedStyle,
-							...{ opacity: this.frontOpacity },
+							...{opacity: this.frontOpacity},
 						}}>
-						<View style={styles.backContent}>
+						<View style={styles.flippableCardContent}>
 							<Text style={styles.content}>Question</Text>
 							<Text style={styles.content}>
 								{questions[currentQuestion].question}
@@ -98,11 +86,11 @@ class Question extends Component {
 					<Animated.View
 						style={{
 							...backAnimatedStyle,
-							...styles.flipCard,
-							...styles.flipCardBack,
-							...{ opacity: this.backOpacity },
+							...styles.flippableCard,
+							...styles.flippableCardBack,
+							...{opacity: this.backOpacity},
 						}}>
-						<View style={{...styles.backContent, ...showBackStyle}}>
+						<View style={{...styles.flippableCardContent, ...showBackStyle}}>
 							<Text style={styles.content}>Answer</Text>
 							<Text style={styles.content}>
 								{questions[currentQuestion].answer}
@@ -110,18 +98,21 @@ class Question extends Component {
 						</View>
 					</Animated.View>
 					<TouchableOpacity onPress={this.flipCard}>
-						<Text style={styles.switchBtn}>
-							{this.state.showQuestion ? 'View Answer' : 'View Question'}
-						</Text>
+						{
+							this.state.showQuestion ?
+								<Text style={{...styles.flipCardBtn, ...styles.greenColor}}>View Answer</Text>
+								:
+								<Text style={{...styles.flipCardBtn, ...styles.redColor}}>View Question</Text>
+						}
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('correct')}
-						style={{ ...styles.regularBtn, ...styles.correctBtn }}>
+						style={{...styles.regularBtn, ...styles.correctBtn}}>
 						<Text style={styles.correctBtn}>Correct</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() => this.onSubmit('incorrect')}
-						style={{ ...styles.regularBtn, ...styles.incorrectBtn }}>
+						style={{...styles.regularBtn, ...styles.incorrectBtn}}>
 						<Text style={styles.incorrectBtn}>In Correct</Text>
 					</TouchableOpacity>
 				</View>
