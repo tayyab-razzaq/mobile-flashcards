@@ -22,8 +22,15 @@ export default (state = initialState, action) => {
 		case DELETE_DECK:
 			return state.merge({decks: action.response});
 		case GET_SINGLE_DECK:
-		case ADD_CARD_TO_DECK:
 			return state.merge({deck: action.response});
+		case ADD_CARD_TO_DECK:
+			return state.merge({
+				deck: action.response,
+				decks: {
+					...state.get('decks'),
+					[action.title]: {...action.response}
+				}
+			});
 		default:
 			return state;
 	}

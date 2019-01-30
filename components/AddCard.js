@@ -21,6 +21,7 @@ class AddCard extends Component {
 				question: '',
 				answer: '',
 			},
+			error: null,
 		};
 	}
 	
@@ -42,6 +43,12 @@ class AddCard extends Component {
 			questionCard => questionCard.question === card.question
 		);
 		if (sameQuestions.length > 0) {
+			this.setState({error: 'Question already exists'});
+			return;
+		}
+		
+		if (card.question.trim() === '') {
+			this.setState({error: 'cannot add card with empty question'});
 			return;
 		}
 		this.props.addCardToDeck(title, card).then(() => {
@@ -51,7 +58,7 @@ class AddCard extends Component {
 	};
 	
 	render() {
-		const {card} = this.state;
+		const {card, error} = this.state;
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding">
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -70,7 +77,11 @@ class AddCard extends Component {
 							clearButtonMode="while-editing"
 							onChangeText={text => this.onChange(text, 'answer')}
 						/>
-						
+						{
+							error ?
+								<Text style={{...styles.content, ...styles.redColor}}>{error}</Text>
+								: null
+						}
 						<TouchableOpacity
 							onPress={this.onSubmit}
 							style={styles.inverseSubmitBtn}>

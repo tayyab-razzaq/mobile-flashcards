@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { saveNewDeck } from '../actions/decksActions';
+import { saveNewDeck, getDeck } from '../actions/decksActions';
 import { connect } from 'react-redux';
 import styles from '../utils/styles';
 import {
@@ -18,6 +18,7 @@ class AddDeck extends Component {
 		
 		this.state = {
 			title: '',
+			error: null
 		};
 	}
 	
@@ -29,17 +30,24 @@ class AddDeck extends Component {
 		const decks = this.props.decksReducer.get('decks') || {};
 		const { title } = this.state;
 		if (title in decks) {
+			this.setState({error: 'Deck already exists'});
+			return;
+		}
+		if (title.trim() === '') {
+			this.setState({error: 'cannot add deck with empty name'});
 			return;
 		}
 		this.props.saveNewDeck(title).then(() => {
-			this.setState({ title: '' });
-			const { goBack } = this.props.navigation;
-			goBack();
+			this.setState({ title: '', error: null });
+			this.props.getDeck(title).then(() => {
+				const { navigate } = this.props.navigation;
+				navigate('Deck');
+			});
 		});
 	};
 	
 	render() {
-		const { title } = this.state;
+		const { title, error } = this.state;
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding">
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -57,6 +65,11 @@ class AddDeck extends Component {
 								clearButtonMode="while-editing"
 								onChangeText={text => this.setState({ title: text })}
 							/>
+							{
+								error ?
+									<Text style={{...styles.content, ...styles.redColor}}>{error}</Text>
+									: null
+							}
 						</View>
 						<View>
 							<TouchableOpacity
@@ -76,6 +89,7 @@ const mapStateToProps = ({ decksReducer }) => ({ decksReducer });
 
 const mapDispatchToProps = dispatch => ({
 	saveNewDeck: title => dispatch(saveNewDeck(title)),
+	getDeck: title => dispatch(getDeck(title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);

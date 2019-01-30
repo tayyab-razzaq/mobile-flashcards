@@ -24,7 +24,7 @@ const deckFetched = response => ({response, type: GET_SINGLE_DECK});
 
 export const getDeck = id => dispatch => API.getDeck(id).then(response => dispatch(deckFetched(response)));
 
-const newCardSaving = response => ({response, type: ADD_CARD_TO_DECK});
+const newCardSaving = (title, response) => ({title, response, type: ADD_CARD_TO_DECK});
 
 export const addCardToDeck = (title, card) => dispatch =>
-	API.addCardToDeck(title, card).then(response => dispatch(newCardSaving(response)));
+	API.addCardToDeck(title, card).then(response => dispatch(newCardSaving(title, response)));
