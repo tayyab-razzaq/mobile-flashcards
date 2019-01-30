@@ -5,8 +5,6 @@ import Result from './Result';
 import {dismissAllScheduledNotifications, setupDeviceNotifications} from '../utils/notifications';
 import {QUIZ_INITIAL_STATE} from '../common/constants';
 
-
-
 class DeckQuestions extends Component {
 	
 	constructor(props) {
