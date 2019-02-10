@@ -1,5 +1,7 @@
 # Udacity Mobile Flashcards
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tayyabRazzaq/mobile-flashcards.svg)](https://greenkeeper.io/)
+
 Mobile application (Android or iOS - or both) that allows users to study collections of flashcards.
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
